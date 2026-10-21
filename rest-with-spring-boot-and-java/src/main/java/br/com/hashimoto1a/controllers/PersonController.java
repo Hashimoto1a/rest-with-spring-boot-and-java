@@ -1,12 +1,11 @@
 package br.com.hashimoto1a.controllers;
 
-import br.com.hashimoto1a.PersonServices;
+import br.com.hashimoto1a.services.PersonServices;
 import br.com.hashimoto1a.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 @RestController

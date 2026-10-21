@@ -1,4 +1,4 @@
-package br.com.hashimoto1a;
+package br.com.hashimoto1a.services;
 
 import br.com.hashimoto1a.model.Person;
 import org.springframework.stereotype.Service;

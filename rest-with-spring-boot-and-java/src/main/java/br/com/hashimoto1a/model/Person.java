@@ -1,15 +1,30 @@
 package br.com.hashimoto1a.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "firs_name", nullable = false, length = 80)
     private String firsName;
+
+    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
+
+    //sem passar o "name = ..." eu estou sugerindo que o nome vai ser o mesmo
+    @Column( nullable = false, length = 100)
     private String address;
+
+    @Column(nullable = false, length = 6)
     private String gender;
 
     public Person(){}
