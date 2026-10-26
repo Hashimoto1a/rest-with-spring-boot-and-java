@@ -1,7 +1,7 @@
 package br.com.hashimoto1a.exception.handler;
 
 import br.com.hashimoto1a.exception.ExceptionResponse;
-import br.com.hashimoto1a.exception.UnsupportedMathOperationException;
+import br.com.hashimoto1a.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -26,13 +26,13 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handlerBadRequestException(Exception ex, WebRequest request){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception ex, WebRequest request){
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }
