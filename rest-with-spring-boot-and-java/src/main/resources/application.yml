@@ -17,4 +17,5 @@ spring:
 
 logging:
    level:
-     br.com.hashimoto1a: DEBUG
+     root: WARN
+     #br.com.hashimoto1a: DEBUG
