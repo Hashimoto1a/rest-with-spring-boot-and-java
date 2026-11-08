@@ -7,7 +7,7 @@ public class PersonDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String firsName;
+    private String firstName;
     private String lastName;
     private String address;
     private String gender;
@@ -46,22 +46,22 @@ public class PersonDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirsName(String firsName) {
-        this.firsName = firsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof PersonDTO person)) return false;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirsName(), person.getFirsName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirsName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
     }
 }
