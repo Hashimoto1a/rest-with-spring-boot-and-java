@@ -1,8 +1,9 @@
 package br.com.hashimoto1a.services;
 
-import br.com.hashimoto1a.data.dto.PersonDTO;
+import br.com.hashimoto1a.data.dto.v1.PersonDTO;
+import br.com.hashimoto1a.data.dto.v2.PersonDTOv2;
 import br.com.hashimoto1a.exception.ResourceNotFoundException;
-import br.com.hashimoto1a.mapper.ObjectMapper;
+import br.com.hashimoto1a.mapper.custom.PersonMapper;
 import br.com.hashimoto1a.model.Person;
 import br.com.hashimoto1a.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -25,6 +25,9 @@ public class PersonServices {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper converter;
 
 
     public List<PersonDTO> findAll(){
@@ -50,6 +53,14 @@ public class PersonServices {
         var entity = parseObject(person, Person.class);
 
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOv2 createV2(PersonDTOv2 person){
+        logger.info("Creating a person v2");
+
+        var entity = converter.convertDTOToEntity(person);
+
+        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person){

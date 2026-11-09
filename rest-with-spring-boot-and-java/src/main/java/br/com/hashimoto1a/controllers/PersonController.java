@@ -1,13 +1,13 @@
 package br.com.hashimoto1a.controllers;
 
-import br.com.hashimoto1a.data.dto.PersonDTO;
+import br.com.hashimoto1a.data.dto.v1.PersonDTO;
+import br.com.hashimoto1a.data.dto.v2.PersonDTOv2;
 import br.com.hashimoto1a.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -42,6 +42,14 @@ public class PersonController{
     )
     public PersonDTO create(@RequestBody PersonDTO person){
         return service.create(person);
+    }
+
+    @PostMapping(name = "/v2",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public PersonDTOv2 create(@RequestBody PersonDTOv2 person){
+        return service.createV2(person);
     }
 
     @PutMapping(

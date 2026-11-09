@@ -1,4 +1,4 @@
-package br.com.hashimoto1a.data.dto;
+package br.com.hashimoto1a.data.dto.v1;
 
 import java.io.Serializable;
 import java.util.Objects;
