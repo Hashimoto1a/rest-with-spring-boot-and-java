@@ -1,5 +1,6 @@
 package br.com.hashimoto1a.controllers;
 
+
 import br.com.hashimoto1a.data.dto.PersonDTO;
 import br.com.hashimoto1a.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,36 +24,30 @@ public class PersonController{
             produces = MediaType.APPLICATION_JSON_VALUE
     ) FORMA LEGADA*/
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<PersonDTO> findAll(){
         return service.findAll();
     }
 
 
     @GetMapping(value = "/{id}",
-            produces = MediaType.APPLICATION_JSON_VALUE
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTO findById(@PathVariable("id") Long id){
-        var person = service.findById(id);
-        person.setBirthdate(new Date());
-        //person.setPhoneNumber("+55 (11) 98765-4321");
-        person.setPhoneNumber("");
-        person.setLastName(null);
-        person.setSensitiveData("foo bar");
-        return person;
+        return service.findById(id);
     }
 
     @PostMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTO create(@RequestBody PersonDTO person){
         return service.create(person);
     }
 
     @PutMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public PersonDTO update(@RequestBody PersonDTO person){
         return service.update(person);
