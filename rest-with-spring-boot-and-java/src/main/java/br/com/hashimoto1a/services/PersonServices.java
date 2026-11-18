@@ -31,7 +31,10 @@ public class PersonServices {
     public List<PersonDTO> findAll(){
         logger.info("Finding all people");
 
-        return parseListObject(repository.findAll(), PersonDTO.class);
+        var persons = parseListObject(repository.findAll(), PersonDTO.class);
+        //persons.forEach(p -> addHateoasLinks(p));
+        persons.forEach(this::addHateoasLinks);
+        return persons;
     }
 
 
@@ -43,16 +46,19 @@ public class PersonServices {
                 () -> new ResourceNotFoundException("No records found for this ID"));
 
         var dto = parseObject(entity, PersonDTO.class);
-        dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel().withType("GET"));
+        addHateoasLinks(dto);
         return dto;
     }
+
 
     public PersonDTO create(PersonDTO person){
         logger.info("Creating a person");
 
         var entity = parseObject(person, Person.class);
 
-        return parseObject(repository.save(entity), PersonDTO.class);
+        var dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public PersonDTO update(PersonDTO person){
@@ -66,7 +72,9 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return parseObject(repository.save(entity), PersonDTO.class);
+        var dto = parseObject(repository.save(entity), PersonDTO.class);
+        addHateoasLinks(dto);
+        return dto;
     }
 
     public void delete(Long id){
@@ -76,7 +84,14 @@ public class PersonServices {
                 () -> new ResourceNotFoundException("No records found for this ID"));
 
         repository.delete(entity);
-
-
     }
+
+    private void addHateoasLinks(PersonDTO dto) {
+        dto.add(linkTo(methodOn(PersonController.class).findById(dto.getId())).withSelfRel().withType("GET"));
+        dto.add(linkTo(methodOn(PersonController.class).findAll()).withRel("findAll").withType("GET"));
+        dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));
+        dto.add(linkTo(methodOn(PersonController.class).update(dto)).withRel("update").withType("PUT"));
+        dto.add(linkTo(methodOn(PersonController.class).delete(dto.getId())).withRel("delete").withType("DELETE"));
+    }
+
 }
