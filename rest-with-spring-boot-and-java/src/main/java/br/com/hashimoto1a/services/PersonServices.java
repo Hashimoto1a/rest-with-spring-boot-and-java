@@ -1,5 +1,6 @@
 package br.com.hashimoto1a.services;
 
+import br.com.hashimoto1a.controllers.PersonController;
 import br.com.hashimoto1a.data.dto.PersonDTO;
 import br.com.hashimoto1a.exception.ResourceNotFoundException;
 import br.com.hashimoto1a.model.Person;
@@ -7,6 +8,7 @@ import br.com.hashimoto1a.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static br.com.hashimoto1a.mapper.ObjectMapper.parseListObject;
 import static br.com.hashimoto1a.mapper.ObjectMapper.parseObject;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class PersonServices {
@@ -39,7 +42,9 @@ public class PersonServices {
         var entity = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this ID"));
 
-        return parseObject(entity, PersonDTO.class);
+        var dto = parseObject(entity, PersonDTO.class);
+        dto.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel().withType("GET"));
+        return dto;
     }
 
     public PersonDTO create(PersonDTO person){
