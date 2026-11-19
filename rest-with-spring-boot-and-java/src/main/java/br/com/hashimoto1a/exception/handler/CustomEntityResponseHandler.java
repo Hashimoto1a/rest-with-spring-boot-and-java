@@ -1,6 +1,7 @@
 package br.com.hashimoto1a.exception.handler;
 
 import br.com.hashimoto1a.exception.ExceptionResponse;
+import br.com.hashimoto1a.exception.RequiredObjectIsNullException;
 import br.com.hashimoto1a.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,16 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception ex, WebRequest request){
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),

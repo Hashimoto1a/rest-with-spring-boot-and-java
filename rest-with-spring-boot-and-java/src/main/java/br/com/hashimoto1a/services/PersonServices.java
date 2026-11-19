@@ -2,6 +2,7 @@ package br.com.hashimoto1a.services;
 
 import br.com.hashimoto1a.controllers.PersonController;
 import br.com.hashimoto1a.data.dto.PersonDTO;
+import br.com.hashimoto1a.exception.RequiredObjectIsNullException;
 import br.com.hashimoto1a.exception.ResourceNotFoundException;
 import br.com.hashimoto1a.model.Person;
 import br.com.hashimoto1a.repository.PersonRepository;
@@ -50,6 +51,9 @@ public class PersonServices {
 
 
     public PersonDTO create(PersonDTO person){
+
+        if (person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating a person");
 
         var entity = parseObject(person, Person.class);
@@ -60,6 +64,10 @@ public class PersonServices {
     }
 
     public PersonDTO update(PersonDTO person){
+
+        if (person == null) throw new RequiredObjectIsNullException();
+
+
         logger.info("Updating a person");
 
         Person entity  = repository.findById(person.getId()).orElseThrow(
