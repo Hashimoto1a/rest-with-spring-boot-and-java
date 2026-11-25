@@ -1,10 +1,10 @@
-package br.com.hashimoto1a.services;
+package br.com.hashimoto1a.unittests.services;
 
 import br.com.hashimoto1a.data.dto.BookDTO;
 import br.com.hashimoto1a.exception.RequiredObjectIsNullException;
 import br.com.hashimoto1a.model.Book;
 import br.com.hashimoto1a.repository.BookRepository;
-import br.com.hashimoto1a.unitetests.mapper.mocks.MockBook;
+import br.com.hashimoto1a.unittests.mapper.mocks.MockBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

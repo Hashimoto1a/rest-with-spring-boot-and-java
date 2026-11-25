@@ -1,4 +1,4 @@
-package br.com.hashimoto1a.unitetests.mapper.mocks;
+package br.com.hashimoto1a.unittests.mapper.mocks;
 
 import br.com.hashimoto1a.data.dto.BookDTO;
 import br.com.hashimoto1a.model.Book;

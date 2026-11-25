@@ -1,10 +1,10 @@
-package br.com.hashimoto1a.services;
+package br.com.hashimoto1a.unittests.services;
 
 import br.com.hashimoto1a.data.dto.PersonDTO;
 import br.com.hashimoto1a.exception.RequiredObjectIsNullException;
 import br.com.hashimoto1a.model.Person;
 import br.com.hashimoto1a.repository.PersonRepository;
-import br.com.hashimoto1a.unitetests.mapper.mocks.MockPerson;
+import br.com.hashimoto1a.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

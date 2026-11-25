@@ -1,4 +1,4 @@
-package br.com.hashimoto1a.unitetests.mapper;
+package br.com.hashimoto1a.unittests.mapper;
 import static br.com.hashimoto1a.mapper.ObjectMapper.parseListObject;
 import static br.com.hashimoto1a.mapper.ObjectMapper.parseObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 import br.com.hashimoto1a.data.dto.PersonDTO;
-import br.com.hashimoto1a.unitetests.mapper.mocks.MockPerson;
+import br.com.hashimoto1a.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
