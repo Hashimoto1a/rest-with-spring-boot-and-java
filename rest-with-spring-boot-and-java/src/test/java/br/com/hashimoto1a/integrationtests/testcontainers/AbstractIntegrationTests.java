@@ -24,13 +24,13 @@ public class AbstractIntegrationTests {
             );
         }
 
-        private static void starContainers() {
+        private static void startContainers() {
             Startables.deepStart(Stream.of(mysql)).join();
         }
 
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
-            starContainers();
+            startContainers();
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
             MapPropertySource testcontainers = new MapPropertySource("testcontainers",
                     (Map) createConnectionConfiguration());
