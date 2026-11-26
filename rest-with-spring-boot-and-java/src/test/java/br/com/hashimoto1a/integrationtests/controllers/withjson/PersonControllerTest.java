@@ -1,6 +1,5 @@
 package br.com.hashimoto1a.integrationtests.controllers.withjson;
 
-import static org.junit.jupiter.api.Assertions.*;
 import br.com.hashimoto1a.config.TestConfig;
 import br.com.hashimoto1a.integrationtests.DTO.PersonDTO;
 import br.com.hashimoto1a.integrationtests.testcontainers.AbstractIntegrationTests;

@@ -3,7 +3,7 @@ package br.com.hashimoto1a.controllers;
 
 import br.com.hashimoto1a.controllers.docs.BookControllerDocs;
 import br.com.hashimoto1a.data.dto.BookDTO;
-import br.com.hashimoto1a.unittests.services.BookServices;
+import br.com.hashimoto1a.services.BookServices;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
