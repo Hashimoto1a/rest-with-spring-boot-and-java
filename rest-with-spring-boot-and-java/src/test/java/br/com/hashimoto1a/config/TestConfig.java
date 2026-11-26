@@ -7,5 +7,7 @@ public interface TestConfig {
 
     String ORIGIN_SEMERU = "https://www.semeru.com.br";
     String ORIGIN_GOOGLE = "https://www.google.com.br";
+    String ORIGIN_LOCAL = "http://localhost:8080";
+
 
 }
